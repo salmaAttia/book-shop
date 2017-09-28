@@ -1,5 +1,9 @@
 
   <div class="center jumbotron">
-    <h1>Bookland</h1>
-    <%= link_to "Sign up now", new_user_registration_path, class: "btn btn-danger btn-lg btn-xlarge" %>
+    <h1>Book Land</h1>
+    <%if not signed_in?%>
+      <%= link_to "Sign up now", new_user_registration_path, class: "btn btn-danger btn-lg btn-xlarge" %>
+    <%else%>
+      <h2>Enjoy Exploring Our Book Land ;D </br><%= current_user.username %> </h2> 
+    <%end%>  
   </div>

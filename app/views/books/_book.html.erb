@@ -1,0 +1,14 @@
+<% obj.each do |book| %>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="well well-lg">
+        <div class="book-title ">
+          <%= link_to book.name, book_path(book),  id: "bookTitle" %>
+        </div>
+        <div class="book-body">
+          <%= truncate(book.description, length: 100) %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

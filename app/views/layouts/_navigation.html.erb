@@ -13,20 +13,17 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">Link</a></li>
+          <%if user_signed_in? and can? :manage, Book%>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">One more separated link</a></li>
-            </ul>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Books <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "All Books", books_path %></li>
+                <li><%= link_to "Add Book", new_book_path %></li> 
+              </ul>
           </li>
+          <%else%>
+            <li><%= link_to "Books", books_path %></li>
+          <%end%>
         </ul>
         <form class="navbar-form navbar-right" role="search">
           <div class="form-group">
@@ -36,6 +33,7 @@
         </form>
         <ul class="nav navbar-nav navbar-left">
             <% if user_signed_in? %>
+              <li><%= link_to 'Users', users_path %></li>
                <li><%= link_to 'Log out', destroy_user_session_path, method: :delete, id: "item1" %></li>
                <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Your Profile<span class="caret"></span></a>
