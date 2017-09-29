@@ -1,11 +1,16 @@
 <% obj.each do |user| %>
-<div class="row">
-  <div class="col-xs-8 col-xs-offset-2">
-    <div class="well well-lg">
-      <div class="book-title ">
-        <%= link_to user.username, user_path(user),  id: "userTitle" %>
+<ul class="listing">
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-4">
+      <div class="well well-sm square_customize navbar-custom">
+        <div class="user-name">
+          <div align="center"><%= image_tag user.avatar.url, :class=> "img-circular" %></div>
+        </div>  
+        <div class="user-name">
+          <%= link_to user.username, user_path(user), id:"user-name" %>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</ul>
 <% end %>

@@ -9,7 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.6'
 gem 'mysql2', '~> 0.3.16'
-gem "paperclip", "~> 5.0.0"
+gem "paperclip", "~> 3.5.0"
 # Use sqlite3 as the database for Active Record
 gem 'devise', '~> 4.1.0'
 gem 'twitter-bootstrap-rails'
@@ -28,6 +28,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+gem 'coffee-script-source', '1.8.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

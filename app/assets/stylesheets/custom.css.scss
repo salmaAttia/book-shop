@@ -5,6 +5,16 @@
     background-color: black;
     font-weight: bold;
   }
+  
+  .img-circular{
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    display: block;
+    border-radius: cover;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+   }
 
   #logo {
     float: left;
@@ -24,10 +34,33 @@
     color: red;
   }
 
+
   #bookTitle:hover {
     color: white;
   }
 
+  #user-name {
+    color: red;
+  }
+  
+
+  #user-name:hover {
+    color: white;
+  }
+
+  .info {
+    text-align: left;
+    font-size: 1.5em;
+    color: red;
+    padding-top: 10px;
+    padding-bottom: 15px;
+  }
+  .square_customize {
+    padding-top: 10px;
+    padding-bottom: 15px;
+    border-width: 0.4em;
+    border-color: red
+  }
   .center {
     text-align: center;
   }
@@ -55,8 +88,8 @@
     color: white;
     padding-bottom: 20px;
     text-align: center;
-      font-weight: bold;
-      font-size: 2em;
+    font-weight: bold;
+    font-size: 2em;
     }
     
   .book-body {
@@ -65,6 +98,24 @@
     padding-bottom: 15px;
     color: black;
   }
+
+  .user-info {
+      border-top: 1px solid rgb(245, 242, 242);
+      padding-top: 15px;
+      padding-bottom: 15px;
+      color: white;
+      font-size: 1em;      
+  }
+
+  .user-name {
+    color: red;
+    text-align: center;
+    font-size: 2em;   
+    font-weight: bold;
+    padding-top: 15px; 
+    padding-bottom: 15px;    
+  }
+
   .listing {
       list-style: none;
       padding-left: 0;

@@ -1,3 +1,17 @@
-<h1 align="center">Welcome to <%= @user.username %>'s page</h1>
-
-<h4 align="center"><%= @user.username %>'s Cart</h4>
+<div id="container" style="width:100%;">                                   
+    <div id="right" style="float:right; width:50%;"> </div>                     
+    <div id="left" style="float:left; width:30%;" align="center">
+    <div><%= image_tag @user.avatar.url, :class=> "img-circular" %></div>    
+        <div class="row">
+            <div class=" well-sm user-name">
+                <%= @user.username %>
+            </div> 
+        </div>
+        <div class="row">
+            <div class="well well-lg square_customize navbar-custom">
+                <div class="info">Info</div> 
+                <div class="user-info ">E-mail: <%=@user.email %></div>          
+            </div>
+        </div>    
+    </div>                   
+  </div>
