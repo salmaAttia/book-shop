@@ -1,11 +1,17 @@
 <div id="container" style="width:100%;">                                   
-    <div id="right" style="float:right; width:50%;"> </div>                     
+    <div id="right" style="float:right; width:70%;">
+        <%if @user==current_user%>
+           
+        <%else%>
+            <h1 align="center">Welcome to <%=@user.username%>'s profile</h1>    
+        <%end%>  
+    </div>                     
     <div id="left" style="float:left; width:30%;" align="center">
-    <div><%= image_tag @user.avatar.url, :class=> "img-circular" %></div>    
+    <div><%= image_tag @user.avatar.url(:thumb), :class=> "img-circular" %></div>    
         <div class="row">
             <div class=" well-sm user-name">
                 <%= @user.username %>
-            </div> 
+            </div>
         </div>
         <div class="row">
             <div class="well well-lg square_customize navbar-custom">

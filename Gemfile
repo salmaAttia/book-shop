@@ -18,7 +18,6 @@ gem 'cancancan'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
-
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '~> 5.0'
 gem 'will_paginate', '~> 3.1.0'

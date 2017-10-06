@@ -1,14 +1,34 @@
-<% obj.each do |book| %>
-  <div class="row">
-    <div class="col-xs-8 col-xs-offset-2">
-      <div class="well well-lg">
-        <div class="book-title ">
-          <%= link_to book.name, book_path(book),  id: "bookTitle" %>
-        </div>
-        <div class="book-body">
-          <%= truncate(book.description, length: 100) %>
-        </div>
-      </div>
+<div class="container">
+    <div class="row">
+      <h2 class="text-center">Books</h2>
+          <hr/>
     </div>
+      <div class="row">
+          <% obj.each do |book| %>
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <h2 align="center"><%= book.name %></h2>
+                    <%= image_tag  book.avatar.url(:thumb)%>
+                    <div class="caption">
+                        <h4>Description: </h4>
+                        <p><%= book.description %></p>
+                        <h4>Price: <%= book.currentPrice %><i class="glyphicon glyphicon-euro"></i></h4>
+                        <h4>Available Amount: <%= book.avamount %></h4>
+                    </div>
+                    <p class="buttons">
+                    <%if user_signed_in?%>
+                      <%= link_to  add_to_cart_path(:book_id => book), :method => :post , class: 'btn btn-default ' do %>
+                      <i class="glyphicon glyphicon-shopping-cart"></i> Add to a cart <% end %>
+                    <%end%>
+                    <%if user_signed_in? and can? :manage, Book%>
+                    <%= link_to  edit_book_path(book), class: 'btn btn-default' do %>
+                    <i class="glyphicon glyphicon-pencil"></i> Edit Book <% end %>
+                    <%= link_to  book_path(book), :method => :delete, class: 'btn btn-default' do %>
+                    <i class="glyphicon glyphicon-remove"></i> Delete Book <% end %>
+                  <%end%>
+                </p>
+                </div>
+            </div>
+          <%end%>  
+      </div>
   </div>
-<% end %>

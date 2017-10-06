@@ -1,10 +1,10 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_cart, only: [:destroy]
   # GET /books
   # GET /books.json
   def index
-    @books = Book.paginate(page: params[:page], per_page: 5)
+    @books = Book.paginate(page: params[:page], per_page: 3)
   end
 
   # GET /books/1
@@ -56,11 +56,12 @@ class BooksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_book
       @book = Book.find(params[:id])
+      @cartitems = @book.cartitems
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:name, :description, :currentPrice)
+      params.require(:book).permit(:name, :description, :currentPrice, :avatar, :avamount)
     end
 
 

@@ -1,0 +1,55 @@
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<h1 align="center">My Cart</h1>
+<div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+    				<thead>
+						<tr>
+							<th style="width:50%">Book</th>
+							<th style="width:10%">Price</th>
+							<th style="width:8%">Quantity</th>
+							<th style="width:15%" class="text-center">Subtotal</th>
+							<th style="width:17%"></th>
+						</tr>
+					</thead>
+					<tbody>
+            <% @total = 0.0 %>
+            <% obj.each do |cartitem| %>
+						<tr>
+               <% @book = Book.find(cartitem.book_id) %>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-10">
+										<h2 class="nomargin"><%=  @book.name %></h2>
+									</div>
+								</div>
+							</td>
+							<td data-th="Price"><%=  @book.currentPrice %></td>
+              <td data-th="Quantity" align="center"><%= cartitem.no_copies %>
+               
+              </td>
+							<td data-th="Subtotal" class="text-center"><%= @sub_total = cartitem.no_copies *  @book.currentPrice %></td>
+							<td class="actions" data-th="">
+                  <%= link_to  add_to_cart_path(cartitem.book_id), :method => :post , class: 'btn btn-info btn-sm' do %>
+                  <i class="glyphicon glyphicon-plus"></i><% end %>
+                  <%= link_to  remove_from_cart_path(cartitem.book_id), :method => :put , class: 'btn btn-info btn-sm' do %>
+                  <i class="glyphicon glyphicon-minus"></i><% end %>
+                  <%= link_to delete_from_cart_path(cartitem), :method => :delete , class: 'btn btn-danger btn-sm' do %>
+                  <i class="fa fa-trash-o"></i><% end %>	
+                  <%= link_to add_order_path(cartitem.id), :method => :post , class: 'btn btn-success btn-sm' do %>
+                  <i class="glyphicon glyphicon-usd"></i><% end %>						
+							</td>
+            </tr>
+            <% @total += @sub_total %>
+            <% end %>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+							<td colspan="2" class="hidden-xs"></td>
+              				<td class="hidden-xs text-center"><strong>Total <%= @total %></strong></td>
+              				<td><%= link_to add_orders_path(Cart.find_by(user_id: current_user.id).id), :method => :post, class: 'btn btn-success btn-block' do %>
+                			<i class="glyphicon glyphicon-usd"></i> Order All Cart Items <% end %></td>
+						</tr>
+          </tfoot>
+				</table>
+</div>
