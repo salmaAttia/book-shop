@@ -1,0 +1,43 @@
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<h1 align="center"> Order </h1>
+<div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+    				<thead>
+						<tr>
+							<th style="width:50%">Book</th>
+							<th style="width:10%">Price</th>
+							<th style="width:8%">Quantity</th>
+							<th style="width:15%" class="text-center">Subtotal</th>
+							<th style="width:17%"></th>
+						</tr>
+					</thead>
+					<tbody>
+            <% @total = 0.0 %>
+            <% @orderitems.each do |orderitem| %>
+						<tr>
+               <% @book = Book.find(orderitem.book_id) %>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-10">
+										<h2 class="nomargin"><%=  @book.name %></h2>
+									</div>
+								</div>
+							</td>
+							<td data-th="Price"><%=  orderitem.purched_price %></td>
+              <td data-th="Quantity" align="center"><%= orderitem.purched_amount %>
+                <td data-th="Subtotal" class="text-center"><%= @sub_total = orderitem.purched_amount *  orderitem.purched_price %></td>
+							</td>
+							<td><%= link_to  delete_orderitem_path(@order.id, orderitem.id),:method => :delete, class: 'btn btn-danger btn-sm' do %>
+								<i class="glyphicon glyphicon-trash"></i><% end %></td>
+            </tr>
+            <% @total += @sub_total %>
+            <% end %>
+					</tbody>
+                </table>
+                <tfoot>
+									<tr>
+														
+                            <td class="hidden-xs text-center"><strong>Total <%= @total %></strong></td>
+                    </tr>
+                </tfoot>            
+</div>

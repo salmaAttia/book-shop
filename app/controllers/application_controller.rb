@@ -11,5 +11,9 @@ class ApplicationController < ActionController::Base
       @order = Order.new(user_id: current_user.id)
       @order.save    
     end  
+
+    def set_order
+      @order = Order.find(params[:id])
+    end 
     
 end

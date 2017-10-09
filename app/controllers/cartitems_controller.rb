@@ -1,4 +1,5 @@
 class CartitemsController < ApplicationController
+    before_action :authenticate_user!    
     before_action :set_cart, only: [:remove_from_cart, :add_to_cart]
    
     def add_to_cart       

@@ -6,7 +6,12 @@ class Order < ApplicationRecord
     def add_book_order(id)
         @cartitem = Cartitem.find(id)
         @book = Book.find(@cartitem.book_id)
-        new_item = Orderitem.create(order_id: self.id, book_id: @book.id, purched_amount: @cartitem.no_copies, purched_price: @book.currentPrice) 
-        new_item
+        if @book.avamount >=  @cartitem.no_copies
+            @book.avamount = @book.avamount - @cartitem.no_copies
+            new_item = Orderitem.create(order_id: self.id, book_id: @book.id, purched_amount: @cartitem.no_copies, purched_price: @book.currentPrice) 
+            @book.save
+            true
+        end
+        false     
     end  
 end

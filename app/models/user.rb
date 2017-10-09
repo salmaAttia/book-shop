@@ -7,8 +7,4 @@ class User < ApplicationRecord
     thumb: "150x150>"}
   has_one :cart, dependent: :destroy
   has_many :orders, dependent: :destroy
-  
-  
-  
-  
 end
