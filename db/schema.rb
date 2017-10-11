@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009074406) do
+ActiveRecord::Schema.define(version: 20171011075039) do
 
   create_table "books", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20171009074406) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.integer  "avamount"
+    t.boolean  "deleted"
   end
 
   create_table "cart_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

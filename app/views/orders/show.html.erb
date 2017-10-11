@@ -14,7 +14,7 @@
 					<tbody>
             <% @total = 0.0 %>
             <% @orderitems.each do |orderitem| %>
-						<tr>
+			   <tr>
                <% @book = Book.find(orderitem.book_id) %>
 							<td data-th="Product">
 								<div class="row">
@@ -27,8 +27,10 @@
               <td data-th="Quantity" align="center"><%= orderitem.purched_amount %>
                 <td data-th="Subtotal" class="text-center"><%= @sub_total = orderitem.purched_amount *  orderitem.purched_price %></td>
 							</td>
-							<td><%= link_to  delete_orderitem_path(@order.id, orderitem.id),:method => :delete, class: 'btn btn-danger btn-sm' do %>
+							<%if can? :manage, Orderitem%>
+								<td><%= link_to  delete_orderitem_path(@order.id, orderitem.id),:method => :delete, class: 'btn btn-danger btn-sm' do %>
 								<i class="glyphicon glyphicon-trash"></i><% end %></td>
+							<%end%>	
             </tr>
             <% @total += @sub_total %>
             <% end %>

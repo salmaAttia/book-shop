@@ -6,6 +6,8 @@ class Ability
        if user.admin?
          can :manage, Book
          can :manage, User
+         can :manage, Order
+         can :manage, Orderitem
        else
          can :read, Book
        end

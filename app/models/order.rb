@@ -10,8 +10,8 @@ class Order < ApplicationRecord
             @book.avamount = @book.avamount - @cartitem.no_copies
             new_item = Orderitem.create(order_id: self.id, book_id: @book.id, purched_amount: @cartitem.no_copies, purched_price: @book.currentPrice) 
             @book.save
-            true
+            return true
         end
-        false     
+        return false     
     end  
 end

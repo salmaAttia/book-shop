@@ -24,8 +24,10 @@
                                                 <td>
                                                      <%= link_to  order_path(userorder), class: 'btn btn-info btn-sm' do %>
                                                     <i class="glyphicon glyphicon-eye-open"></i><% end %>
-                                                    <%= link_to  order_path(userorder),:method => :delete, class: 'btn btn-danger btn-sm' do %>
-                                                    <i class="glyphicon glyphicon-trash"></i><% end %>
+                                                    <%if can? :manage, Order%>
+                                                        <%= link_to  order_path(userorder),:method => :delete, class: 'btn btn-danger btn-sm' do %>
+                                                        <i class="glyphicon glyphicon-trash"></i><% end %>
+                                                    <%end%>
                                                 </td>
                                             </tr>
                                             <%end%>

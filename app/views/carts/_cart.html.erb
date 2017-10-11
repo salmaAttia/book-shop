@@ -15,15 +15,16 @@
             <% @total = 0.0 %>
             <% obj.each do |cartitem| %>
 						<tr>
-               <% @book = Book.find(cartitem.book_id) %>
-							<td data-th="Product">
-								<div class="row">
-									<div class="col-sm-10">
-										<h2 class="nomargin"><%=  @book.name %></h2>
+			   <% @book = Book.find(cartitem.book_id) %>
+							
+								<td data-th="Product">
+									<div class="row">
+										<div class="col-sm-10">
+											<h2 class="nomargin"><%=  @book.name %></h2>
+										</div>
 									</div>
-								</div>
-							</td>
-							<td data-th="Price"><%=  @book.currentPrice %></td>
+								</td>
+								<td data-th="Price"><%=  @book.currentPrice %></td>
               <td data-th="Quantity" align="center"><%= cartitem.no_copies %>
                
               </td>
@@ -39,7 +40,8 @@
                   <i class="glyphicon glyphicon-usd"></i><% end %>						
 							</td>
             </tr>
-            <% @total += @sub_total %>
+			<% @total += @sub_total %>
+			
             <% end %>
 					</tbody>
 					<tfoot>

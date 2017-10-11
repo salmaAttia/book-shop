@@ -5,30 +5,40 @@
     </div>
       <div class="row">
           <% obj.each do |book| %>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <h2 align="center"><%= book.name %></h2>
-                    <%= image_tag  book.avatar.url(:thumb)%>
-                    <div class="caption">
-                        <h4>Description: </h4>
-                        <p><%= book.description %></p>
-                        <h4>Price: <%= book.currentPrice %><i class="glyphicon glyphicon-euro"></i></h4>
-                        <h4>Available Amount: <%= book.avamount %></h4>
-                    </div>
-                    <p class="buttons">
-                    <%if user_signed_in?%>
-                      <%= link_to  add_to_cart_path(:book_id => book), :method => :post , class: 'btn btn-default ' do %>
-                      <i class="glyphicon glyphicon-shopping-cart"></i> Add to a cart <% end %>
-                    <%end%>
-                    <%if user_signed_in? and can? :manage, Book%>
-                    <%= link_to  edit_book_path(book), class: 'btn btn-default' do %>
-                    <i class="glyphicon glyphicon-pencil"></i> Edit Book <% end %>
-                    <%= link_to  book_path(book), :method => :delete, class: 'btn btn-default' do %>
-                    <i class="glyphicon glyphicon-remove"></i> Delete Book <% end %>
-                  <%end%>
-                </p>
+                <%if not book.deleted %>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <h2 align="center"><%= book.name %></h2>
+                        <%= image_tag book.avatar.url(:thumb)%>
+                        <div class="caption">
+                            <h4>Description: </h4>
+                            <p><%= book.description %></p>
+                            <h4>Price: <%= book.currentPrice %><i class="glyphicon glyphicon-euro"></i></h4>
+                            <%if book.avamount == 0%>
+                                <h4>Out of stock! All Sold!</h4>
+                            <%else%>    
+                                <h4>Available Amount: <%= book.avamount %></h4>
+                            <%end%>    
+                        </div>
+                        <p class="buttons">
+                        <%if user_signed_in?%>
+                            <%if book.avamount != 0%> 
+                                <%= link_to  add_to_cart_path(:book_id => book), :method => :post , class: 'btn btn-default ', :title => "Add to my cart" do %>
+                                <i class="glyphicon glyphicon-shopping-cart"></i><% end %>
+                            <%end%>     
+                        <%= link_to  book_path(book), class: 'btn btn-default ', :title => "Show Book Details" do %>
+                        <i class="glyphicon glyphicon-eye-open"></i><% end %>
+                        <%end%>
+                        <%if user_signed_in? and can? :manage, Book%>
+                            <%= link_to  edit_book_path(book), class: 'btn btn-default',:title => "Edit Book"  do %>
+                            <i class="glyphicon glyphicon-pencil"></i><% end %>
+                            <%= link_to  book_path(book), :method => :delete, class: 'btn btn-danger btn-sm', :title => "Delete Book" do %>
+                            <i class="glyphicon glyphicon-trash"></i><% end %>
+                        <%end%>
+                     </p>
                 </div>
             </div>
+            <%end%>
           <%end%>  
       </div>
   </div>

@@ -36,8 +36,12 @@ class OrderitemsController < ApplicationController
         @order = Order.find(params[:order_id])
         @orderitem = Orderitem.find(params[:orderitem_id])
         @book = Book.find(@orderitem.book_id)
-        @book.avamount = @book.avamount + @orderitem.purched_amount
-        @book.save
+        if @book.deleted and @book.orderitems.present?
+            @book.destroy
+        else
+            @book.avamount = @book.avamount + @orderitem.purched_amount
+            @book.save
+        end    
         @orderitem.destroy
         @orderitems = @order.orderitems
         if not @orderitems.present?
